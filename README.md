@@ -10,6 +10,8 @@ To install the required dependencies, run the following command:
 pip install -r requirements.txt
 ```
 
+Download the dataset from [here](https://drive.google.com/file/d/1hA4EZzDsDS_G6FOG3W4JuFZrHUKvqQve/view?usp=share_link) and place it in the same directory as the code, then rename it to `dataset.csv`.
+
 ## Usage
 
 To use this project, follow these steps:
