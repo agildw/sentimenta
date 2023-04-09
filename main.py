@@ -1,4 +1,5 @@
 import pandas as pd
+import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
@@ -9,7 +10,6 @@ from flask_cors import CORS
 print('Loading dataset...')
 
 df_review_imb = pd.read_csv('dataset.csv')
-
 
 print('Splitting dataset...')
 
@@ -27,22 +27,20 @@ test_x_vector = tfidf.transform(test_x)
 
 print('Training model...')
 
-pd.DataFrame.sparse.from_spmatrix(train_x_vector,
-                                  index=train_x.index,
-                                  columns=tfidf.get_feature_names_out())
-
-svc = SVC(kernel='linear')
+svc = SVC(C=1,kernel='linear')
 svc.fit(train_x_vector, train_y)
 
-print('Model trained!')
+pickle.dump(svc, open('model.pkl', 'wb'))
+pickle.dump(tfidf, open('tfidf.pkl', 'wb'))
 
+print('Model trained!')
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
 def index():
-    return 'try post to /predict'
+    return "to predict, post to /predict"
 
 
 @app.route('/predict', methods=['POST'])
