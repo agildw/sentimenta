@@ -1,6 +1,6 @@
 # Sentimenta
 
-This project is a simple implementation of sentiment analysis using Support Vector Machines (SVM). It uses the Pandas library for data handling, scikit-learn for machine learning, Flask for web application development, and Flask-CORS for enabling cross-origin resource sharing.
+This project is a simple implementation of sentiment analysis using Support Vector Machines (SVM). It uses the Pandas library for data handling, scikit-learn for machine learning, Flask for web application development
 
 ## Installation
 
@@ -31,5 +31,3 @@ flask run
   "review": "This is a good movie"
 }
 ```
-
-> Note: The model has already been trained on a dataset, so no additional training is required.
