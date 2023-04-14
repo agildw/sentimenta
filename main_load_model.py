@@ -14,16 +14,16 @@ print('Model loaded!')
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/')
-def index():
-    return "to predict, post to /predict"
 
-
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET'])
 def predict():
-    review = request.form['review']
-    prediction = svc.predict(tfidf.transform([review]))
-    response = jsonify({'prediction': prediction[0]})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+    review = request.args.get('review')
+    if review is None:
+        return jsonify({'error': 'No review provided'})
+    else :
+        prediction = svc.predict(tfidf.transform([review]))
+        response = jsonify({'prediction': prediction[0]})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
 
+app.run(port=5000)
