@@ -38,11 +38,6 @@ print('Model trained!')
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/')
-def index():
-    return "to predict, post to /predict"
-
-
 @app.route('/predict', methods=['POST'])
 def predict():
     review = request.form['review']
